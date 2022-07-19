@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
     private ProgressBar progressBar;
 
     @Override
@@ -59,9 +60,9 @@ public class LoginActivity extends AppCompatActivity {
         progressBar.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.GONE);
 
-        SharedPreferences session = getSharedPreferences("session",MODE_PRIVATE);
-        SharedPreferences.Editor editor = session.edit();
-        editor.putBoolean("session_active", false);
+        sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("session_active", true);
 
         Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);

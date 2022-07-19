@@ -10,6 +10,8 @@ import android.widget.Button;
 
 public class HomePageActivity extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +25,8 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     private void checkSessionActive() {
-        SharedPreferences session = getSharedPreferences("session",MODE_PRIVATE);
-        boolean sessionActive = session.getBoolean("session_active", false);
+        sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
+        boolean sessionActive = sharedPreferences.getBoolean("session_active", false);
 
         if (!sessionActive) {
             Intent intent = new Intent(this, LoginActivity.class);
