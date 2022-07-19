@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         progressBar.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.GONE);
 
-        sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("session", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("session_active", true);
 
