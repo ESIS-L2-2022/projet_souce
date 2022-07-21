@@ -16,6 +16,7 @@ import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
+    private Button boutonLogin;
     private ProgressBar progressBar;
 
     @Override
@@ -26,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText edMatricule = findViewById(R.id.editTextMatricule);
         EditText edPassword = findViewById(R.id.edittext_password);
 
-        Button boutonLogin = findViewById(R.id.button_login);
+        boutonLogin = findViewById(R.id.button_login);
         progressBar = findViewById(R.id.progress_bar);
 
         // 16AB005
@@ -57,12 +58,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login(String matricule, String password) {
         progressBar.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.INVISIBLE);
-        progressBar.setVisibility(View.GONE);
+        boutonLogin.setEnabled(false);
 
         sharedPreferences = getSharedPreferences("session", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("session_active", true);
+        editor.putBoolean("session_active", true).apply();
 
         Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);

@@ -34,7 +34,6 @@
             android:exported="false" />
         <activity
             android:name=".HomePageActivity"
-            android:label="Accueil"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

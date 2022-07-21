@@ -27,7 +27,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     private void checkSessionActive() {
         sharedPreferences = getSharedPreferences("session", MODE_PRIVATE);
-        boolean sessionActive = sharedPreferences.getBoolean("session_active", true);
+        boolean sessionActive = sharedPreferences.getBoolean("session_active", false);
 
         if (!sessionActive) {
             Intent intent = new Intent(this, LoginActivity.class);
