@@ -14,24 +14,29 @@
         android:theme="@style/Theme.Projectmobile"
         tools:targetApi="31">
         <activity
-            android:parentActivityName=".HomePageActivity"
-            android:label="Liste Travail"
+            android:parentActivityName=".ProfileActivity"
+            android:label="Modifier Profile"
+            android:name=".ModifierProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListeTravailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Liste Travail"
+            android:parentActivityName=".HomePageActivity" />
         <activity
-            android:parentActivityName=".HomePageActivity"
-            android:label="Profile"
             android:name=".ProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Profile"
+            android:parentActivityName=".HomePageActivity" />
         <activity
-            android:parentActivityName=".HomePageActivity"
-            android:label="Ajouter"
             android:name=".AjouterTravailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Ajouter"
+            android:parentActivityName=".HomePageActivity" />
         <activity
-            android:label="Login"
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Login" />
         <activity
             android:name=".HomePageActivity"
             android:exported="true">
