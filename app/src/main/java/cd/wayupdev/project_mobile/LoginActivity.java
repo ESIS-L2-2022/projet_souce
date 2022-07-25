@@ -63,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("session", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("session_active", true).apply();
+        editor.putString("session_matricule", matricule).apply();
 
         Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);
