@@ -14,7 +14,12 @@ import android.widget.Toast;
 
 import java.util.Locale;
 
+import cd.wayupdev.project_mobile.util.Common;
+
 public class ModifierProfileActivity extends AppCompatActivity {
+
+    private static final int IS_CHECK = 0x00000001;
+    private static final int IS_NOT_CHECK = 0x00000081;
 
     SharedPreferences sharedPreferences;
     private String password = "19mm375";
@@ -42,9 +47,15 @@ public class ModifierProfileActivity extends AppCompatActivity {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                oldPassword.setInputType(0x00000001);
-                newPassword.setInputType(0x00000001);
-                confirmPassword.setInputType(0x00000001);
+                if (checkBox.isChecked()){
+                    oldPassword.setInputType(IS_CHECK);
+                    newPassword.setInputType(IS_CHECK);
+                    confirmPassword.setInputType(IS_CHECK);
+                }else {
+                    oldPassword.setInputType(IS_NOT_CHECK);
+                    newPassword.setInputType(IS_NOT_CHECK);
+                    confirmPassword.setInputType(IS_NOT_CHECK);
+                }
             }
         });
     }
@@ -53,24 +64,28 @@ public class ModifierProfileActivity extends AppCompatActivity {
         modifier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String old, newP, conf;
-                old = oldPassword.getText().toString();
-                newP = newPassword.getText().toString();
-                conf = confirmPassword.getText().toString();
-
-                if (old.equals(password)){
-                    if (newP.length() >= 6){
-                        if (newP.equals(conf)) {
-                            password = newP;
-                            modifierMotPass();
-                        }else
-                            Toast.makeText(ModifierProfileActivity.this, "confirmation incorrete", Toast.LENGTH_SHORT).show();
-                    }else
-                        Toast.makeText(ModifierProfileActivity.this, "le mot de passe doit avoir au moins 6 caractere", Toast.LENGTH_SHORT).show();
-                }else
-                    Toast.makeText(ModifierProfileActivity.this, "Ancien mot de passe incorrete", Toast.LENGTH_SHORT).show();
+                fielverification();
             }
         });
+    }
+
+    public void fielverification(){
+        String oldPword, newPword, confPassword;
+        oldPword = oldPassword.getText().toString();
+        newPword = newPassword.getText().toString();
+        confPassword = confirmPassword.getText().toString();
+
+        if (oldPword.equals(password)){
+            if (newPword.length() >= 6){
+                if (newPassword.equals(confPassword)) {
+                    password = newPword;
+                    modifierMotPass();
+                }else
+                    Common.myTost(this, "confirmation incorrete");
+            }else
+                Common.myTost(this, "le mot de passe doit avoir au moins 6 caractere");
+        }else
+            Common.myTost(this, "Ancien mot de passe incorrete");
     }
 
     private void modifierMotPass() {
